@@ -1,6 +1,17 @@
 <template>
-  <router-view/>
+  <header-train-green/>
 </template>
+
+<script lang="ts">
+import {defineComponent} from "vue";
+import HeaderTrainGreen from "@/components/HeaderTrainGreen.vue";
+
+export default defineComponent({
+  components: {
+    HeaderTrainGreen
+  }
+})
+</script>
 
 <style lang="scss">
 #app {
