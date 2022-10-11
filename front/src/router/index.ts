@@ -10,7 +10,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     component: () => import('../views/AboutView.vue')
-  }
+  },
+  {
+    path: '/search-page',
+    name:'SearchPage',
+    component: () => import('../views/SearchPage.vue')
+  },
 ]
 
 const router = createRouter({
