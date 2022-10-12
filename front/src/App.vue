@@ -1,15 +1,20 @@
 <template>
   <header-train-green/>
+  <div class="search">
+    <search-journey/>
+  </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import HeaderTrainGreen from "@/components/HeaderTrainGreen.vue";
+import SearchJourney from "@/views/SearchJourney.vue";
 
 export default defineComponent({
   components: {
-    HeaderTrainGreen
-  }
+    SearchJourney,
+    HeaderTrainGreen,
+  },
 })
 </script>
 
@@ -33,5 +38,10 @@ nav {
       color: #42b983;
     }
   }
+}
+
+.search {
+  margin: 2rem auto;
+  width: 40%;
 }
 </style>

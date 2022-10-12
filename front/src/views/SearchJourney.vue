@@ -1,15 +1,16 @@
 <template>
   <div>
-    <h1>Train Green</h1>
-    <p>Test Test Test Test Test Test</p>
+    <form-train-green/>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
+import FormTrainGreen from "@/components/FormTrainGreen.vue";
 
 export default defineComponent({
-  name: "SearchPage"
+  name: "SearchJourney",
+  components: {FormTrainGreen},
 });
 </script>
 
