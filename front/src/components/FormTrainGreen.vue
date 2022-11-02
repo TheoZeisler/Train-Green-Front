@@ -12,7 +12,7 @@
     <div class="result">
       <ul>
         <li v-for="index in sections.steps" v-bind:key="index">
-          ⏳{{ index.departure_date_time}} {{ index.from }} ➡️ {{ index.departure_date_time}} {{ index.to }} ⌛️ {{ this.changeType(index.type) }} ⏱️ {{ index.duration }} mins 💨 {{ index.co2_emissions }}gCO2e
+          📍 {{ index.from }} ➡️  {{ index.to }} : {{ this.changeType(index.type) }} ⏱️ {{ index.duration }} mins 💨 {{ index.co2_emissions }}gCO2e
         </li>
       </ul>
     </div>
@@ -36,7 +36,7 @@ export default defineComponent({
         steps_from: [] as any,
         steps_to: [] as any,
         to: '',
-        steps: [] as { from: string, to: string, type: string, arrival_date_time: string, departure_date_time: string, duration: string, co2_emissions: string} [],
+        steps: [] as { from: string, to: string, type: string,  duration: string, co2_emissions: string} [],
       },
       array: [] as any
     }
@@ -59,18 +59,15 @@ export default defineComponent({
         for (let i=0; i < this.sections.all.length; i++){
           this.array.push(this.sections.all[i]);
           this.sections.steps = this.array.map((res: any) => {
-            var steps_obj = {from: '', to: '', type: '', arrival_date_time: '', departure_date_time: '', duration: '', co2_emissions: ''};
+            var steps_obj = {from: '', to: '', type: '', duration: '', co2_emissions: ''};
             steps_obj.from = res.from?.name;
             steps_obj.to = res.to?.name;
             steps_obj.type = res.type;
-            steps_obj.arrival_date_time = res.arrival_date_time;
-            steps_obj.departure_date_time = res.departure_date_time;
             steps_obj.duration = ((res.duration)/60).toFixed(2);
             steps_obj.co2_emissions = res.co2_emission?.value;
             return steps_obj
           });
         }
-        console.log(this.sections.steps);
       });
     },
     changeType(type:string) {
