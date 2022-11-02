@@ -25,11 +25,9 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .header {
-  position: sticky;
   top: 0;
   border: 0px solid;
   box-shadow: 1px 0px 10px grey;
-  z-index: 999;
   padding: 5px;
 
   &-title {

@@ -9,24 +9,36 @@
         <b-button type="reset" variant="danger">Renitialiser</b-button>
       </b-form>
     </div>
-    <div>
-      <p>{{ result }}</p>
+    <div class="result">
+      <ul>
+        <li v-for="index in sections.steps" v-bind:key="index">
+          {{ index.from }} ➡️ {{ index.to }}  {{ this.changeType(index.type) }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {getResult} from "@/api/search";
+import {getResult} from "../api/search";
 
 export default defineComponent({
   name: "FormTrainGreen",
   data() {
     return {
-      departure: '',
-      arrival: '',
+      departure: '20 rue Gombert',
+      arrival: '10 rue du Pavé bleu',
       show: true,
-      result: {} as any
+      sections : {
+        all: {} as any,
+        from: '',
+        steps_from: [] as any,
+        steps_to: [] as any,
+        to: '',
+        steps: [] as { from: string, to: string, type: string } [],
+      },
+      array: [] as any
     }
   },
   methods: {
@@ -41,18 +53,34 @@ export default defineComponent({
       this.arrival = ''
     },
     displayResult() {
-      console.log(this.departure);
-      console.log(this.arrival);
       getResult(this.departure, this.arrival)
-          .then((res) => {
-        this.result = res.data[0].sections[0];
-        console.log(this.result);
+          .then((res: any) => {
+        this.sections.all = res.data[0].sections;
+        for (let i=0; i < this.sections.all.length; i++){
+          this.array.push(this.sections.all[i]);
+          this.sections.steps = this.array.map((res: any) => {
+            var steps_obj = {from: '', to: '', type: ''};
+            steps_obj.from = res.from?.name;
+            steps_obj.to = res.to?.name;
+            steps_obj.type = res.type;
+            return steps_obj
+          });
+        }
+        console.log(this.sections.steps);
       });
+    },
+    changeType(type:string) {
+      if (type === 'street_network') return 'À pied';
+      if (type === 'public_transport') return 'En transport public';
+      if (type === 'waiting') return 'Attente';
+      if (type === 'transfer') return 'Transfert';
     }
   }
 });
 </script>
 
 <style scoped lang="scss">
-
+.result {
+  width: 129%
+}
 </style>
