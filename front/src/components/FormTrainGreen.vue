@@ -27,8 +27,8 @@ export default defineComponent({
   name: "FormTrainGreen",
   data() {
     return {
-      departure: '20 rue Gombert',
-      arrival: '10 rue du Pavé bleu',
+      departure: '',
+      arrival: '',
       show: true,
       sections : {
         all: {} as any,
