@@ -45,6 +45,7 @@ export default defineComponent({
   methods: {
     onSubmit(event: { preventDefault: () => void; }) {
       event.preventDefault()
+      this.sections.steps = []
       this.show = false;
     },
     onReset(event: { preventDefault: () => void; }) {
@@ -52,6 +53,7 @@ export default defineComponent({
       // Reset our form values
       this.departure = ''
       this.arrival = ''
+      this.sections.steps = []
     },
     displayResult() {
       getResult(this.departure, this.arrival)
